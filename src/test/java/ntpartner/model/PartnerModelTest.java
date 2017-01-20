@@ -83,14 +83,14 @@ public class PartnerModelTest {
 	@Test
 	public void checkTestDataAvailable() {
 		List<Person> allPersons = personRepository.findAll();
-		assertEquals(2, allPersons.size());
+		assertEquals(3, allPersons.size());
 		List<Address> allAddresses = addressRepository.findAll();
 		assertEquals(1, allAddresses.size());
 	}
 
 	@Test
 	public void deleteAddressForPerson() {
-		List<Person> persons = personRepository.findByFirstnameAndLastname("Marty", "Maredo");
+		List<Person> persons = personRepository.findByNameFirstnameAndNameLastname("Marty", "Maredo");
 		Person person = persons.get(0);
 		assertEquals("Marty", person.name.firstname);
 		assertEquals("Maredo", person.name.lastname);
@@ -133,7 +133,7 @@ public class PartnerModelTest {
 	
 	@Test
 	public void deletePerson() {
-		List<Person> persons = personRepository.findByFirstnameAndLastname("Marty", "Maredo");
+		List<Person> persons = personRepository.findByNameFirstnameAndNameLastname("Marty", "Maredo");
 		Person person = persons.get(0);
 		personRepository.delete(person);
 		
@@ -172,7 +172,7 @@ public class PartnerModelTest {
 	
 	@Test
 	public void updatePersonsAddressWrongWay() {
-		List<Person> persons = personRepository.findByFirstnameAndLastname("Marty", "Maredo");
+		List<Person> persons = personRepository.findByNameFirstnameAndNameLastname("Marty", "Maredo");
 		Person person = persons.get(0);
 		person.name.lastname = "Montana";
 		person.address.city = "Vaihingen";
@@ -184,7 +184,7 @@ public class PartnerModelTest {
 	
 	@Test
 	public void updatePersonsAddressCorrect() {
-		List<Person> persons = personRepository.findByFirstnameAndLastname("Marty", "Maredo");
+		List<Person> persons = personRepository.findByNameFirstnameAndNameLastname("Marty", "Maredo");
 		Person person = persons.get(0);
 		person.name.lastname = "Montana";
 		person.address.city = "Vaihingen";
@@ -199,7 +199,7 @@ public class PartnerModelTest {
 	
 	@Test
 	public void updatePerson() {
-		List<Person> persons = personRepository.findByFirstnameAndLastname("Marty", "Maredo");
+		List<Person> persons = personRepository.findByNameFirstnameAndNameLastname("Marty", "Maredo");
 		Person person = persons.get(0);
 		person.name.lastname = "Montana";
 		Person savedPerson = personRepository.save(person);

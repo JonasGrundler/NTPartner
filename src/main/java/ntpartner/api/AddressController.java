@@ -52,7 +52,7 @@ public class AddressController {
 	 * @param addressRessource
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(method = RequestMethod.PUT)
 	public ResponseEntity<AddressResource> updateAddress(AddressResource addressRessource) {
 //		if (addressRessource != null) {
 //			Address address = addressRessource.toAddress();
@@ -84,7 +84,7 @@ public class AddressController {
 		
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<AddressResource> delete(@PathVariable Long id) {
 		partnerService.deleteAddress(id);
 		return new ResponseEntity<AddressResource>(HttpStatus.OK);

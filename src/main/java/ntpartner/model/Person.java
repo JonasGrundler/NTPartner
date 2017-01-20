@@ -3,7 +3,6 @@ package ntpartner.model;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -38,7 +37,7 @@ public class Person extends AbstractPersistable<Long> implements Identifiable<Lo
 	public Name name;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(foreignKey=@ForeignKey(name="Person_ibfk_1"))
+	@JoinColumn(name = "idAddress", referencedColumnName = "id")
 	public Address address;
 
 	@Override

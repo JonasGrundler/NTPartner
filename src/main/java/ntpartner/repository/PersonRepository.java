@@ -15,10 +15,10 @@ import ntpartner.model.Person;
  */
 @Transactional
 public interface PersonRepository extends JpaRepository<Person, Long> {
-    List<Person> findByFirstname(String firstname);
-    List<Person> findByLastname(String lastname);
-    List<Person> findByFirstnameAndLastname(String firstname, String lastname);
+    List<Person> findByNameFirstname(String firstname);
+    List<Person> findByNameLastname(String lastname);
+    List<Person> findByNameFirstnameAndNameLastname(String firstname, String lastname);
     
-    @Query("SELECT p FROM Person p WHERE p.idAddress = :idAddress")
+    @Query("SELECT p FROM Person p WHERE p.address = :idAddress")
     public List<Person> findByAddress(@Param("idAddress") Long idAddress);
 }
