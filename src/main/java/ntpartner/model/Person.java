@@ -1,26 +1,23 @@
 package ntpartner.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.hateoas.Identifiable;
 
 /**
  * Person Entity
  */
 @Entity
-public class Person extends AbstractPersistable<Long> {
+public class Person extends AbstractPersistable<Long> implements Identifiable<Long> {
 
 	private static final long serialVersionUID = -7728962437347271840L;
 
-	@NotEmpty
-	public String firstname;
-	
-	@NotEmpty
-	public String lastname;
 	
 	/**
      * Constructor to be able to set id of entity explicitly
@@ -34,12 +31,14 @@ public class Person extends AbstractPersistable<Long> {
 	}
 
 	public Person(String firstname, String lastname) {
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.name = new Name(firstname, lastname);
 	}
+	
+	@Embedded
+	public Name name;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "idAddress", referencedColumnName = "id")
+	@JoinColumn(foreignKey=@ForeignKey(name="Person_ibfk_1"))
 	public Address address;
 
 	@Override
@@ -47,8 +46,7 @@ public class Person extends AbstractPersistable<Long> {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
-		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -66,15 +64,10 @@ public class Person extends AbstractPersistable<Long> {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (firstname == null) {
-			if (other.firstname != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!firstname.equals(other.firstname))
-			return false;
-		if (lastname == null) {
-			if (other.lastname != null)
-				return false;
-		} else if (!lastname.equals(other.lastname))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}

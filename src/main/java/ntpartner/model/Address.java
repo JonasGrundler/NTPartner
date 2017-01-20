@@ -4,13 +4,14 @@ import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.hateoas.Identifiable;
 
 /**
  * Address entity
  * @author user
  */
 @Entity
-public class Address extends AbstractPersistable<Long> {
+public class Address extends AbstractPersistable<Long> implements Identifiable<Long>  {
 	private static final long serialVersionUID = -6503692835232524166L;
 	
 	@NotEmpty
@@ -34,6 +35,10 @@ public class Address extends AbstractPersistable<Long> {
     }
     
     public Address() {
+    }
+    
+    public void setId(Long id) {
+    	super.setId(id);
     }
 
 	public Address(String street, String streetNo, String zipCode, String city) {

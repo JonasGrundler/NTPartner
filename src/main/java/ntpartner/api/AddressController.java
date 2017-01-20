@@ -26,14 +26,15 @@ public class AddressController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<AddressResource> createAddress(@RequestBody AddressResource addressRessource) {
-		if (addressRessource != null) {
-			Address address = addressRessource.toAddress();
-			Address newAddress = partnerService.createAddress(address);
-			AddressResource newAddressResource = new AddressResource().fromAddress(newAddress);
-			return new ResponseEntity<AddressResource>(newAddressResource, HttpStatus.CREATED);
-		} else {
-			return new ResponseEntity<AddressResource>(HttpStatus.BAD_REQUEST);
-		}
+//		if (addressRessource != null) {
+//			Address address = addressRessource.toAddress();
+//			Address newAddress = partnerService.createAddress(address);
+//			AddressResource newAddressResource = new AddressResource().fromAddress(newAddress);
+//			return new ResponseEntity<AddressResource>(newAddressResource, HttpStatus.CREATED);
+//		} else {
+//			return new ResponseEntity<AddressResource>(HttpStatus.BAD_REQUEST);
+//		}
+		return new ResponseEntity<AddressResource>(HttpStatus.BAD_REQUEST);
 	}
 
 	//
@@ -53,14 +54,15 @@ public class AddressController {
 	 */
 	@RequestMapping(method = RequestMethod.DELETE)
 	public ResponseEntity<AddressResource> updateAddress(AddressResource addressRessource) {
-		if (addressRessource != null) {
-			Address address = addressRessource.toAddress();
-			Address updatedAddress = partnerService.updateAddress(address);
-			AddressResource updatedAddressResource = new AddressResource().fromAddress(updatedAddress);
-			return new ResponseEntity<AddressResource>(updatedAddressResource, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<AddressResource>(HttpStatus.BAD_REQUEST);
-		}
+//		if (addressRessource != null) {
+//			Address address = addressRessource.toAddress();
+//			Address updatedAddress = partnerService.updateAddress(address);
+//			AddressResource updatedAddressResource = new AddressResource().fromAddress(updatedAddress);
+//			return new ResponseEntity<AddressResource>(updatedAddressResource, HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<AddressResource>(HttpStatus.BAD_REQUEST);
+//		}
+		return new ResponseEntity<AddressResource>(HttpStatus.BAD_REQUEST);
 	}
 	
 	
@@ -72,13 +74,13 @@ public class AddressController {
 	 */
 	@RequestMapping(method = RequestMethod.DELETE)
 	public ResponseEntity<AddressResource> deleteAddress(@RequestBody AddressResource addressRessource) {
-		if (addressRessource != null) {
-			Address address = addressRessource.toAddress();
-			partnerService.deleteAddress(address);
-			return new ResponseEntity<AddressResource>(HttpStatus.OK);
-		} else {
+//		if (addressRessource != null) {
+//			Address address = addressRessource.toAddress();
+//			partnerService.deleteAddress(address);
+//			return new ResponseEntity<AddressResource>(HttpStatus.OK);
+//		} else {
 			return new ResponseEntity<AddressResource>(HttpStatus.BAD_REQUEST);
-		}
+//		}
 		
 	}
 
