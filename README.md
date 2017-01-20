@@ -1,2 +1,10 @@
 # NTPartner
-NT Partner System
+
+Prerequisites: 
+
+eclipse plugins:
+	m2e-atp
+	cloud foundry
+
+database
+	mysql
